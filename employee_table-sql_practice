@@ -1,1 +1,45 @@
+-- FIND THE EMPLOYEE NAME WHO IS GETTING SALARY GREATER THAN AVG SALARY
+SELECT employee_name
+FROM employees
+WHERE salary > (
+    SELECT AVG(salary) FROM employees
+);
+
+-- FIND THE EMPLOYEE NAME WHO IS GETTING SALARY LESS THAN EMPLOYEE = CHARLIE BROWN
+SELECT employee_name
+FROM employees
+WHERE salary < (
+    SELECT salary FROM employees WHERE employee_name = 'Charlie Brown'
+);
+
+-- FIND THE EMPLOYEE NAME WHO IS GETTING SAME SALARY AS CHARLIE BROWN
+SELECT employee_name
+FROM employees
+WHERE salary = (
+    SELECT salary FROM employees WHERE employee_name = 'Charlie Brown'
+);
+
+-- FIND EMPLOYEE NAME WHOSE SALARY IS GREATER THAN BOB SMITH AND LESS THAN DAVID WILSON
+SELECT employee_name
+FROM employees
+WHERE salary >
+      (SELECT salary FROM employees WHERE employee_name = 'Bob Smith')
+  AND salary <
+      (SELECT salary FROM employees WHERE employee_name = 'David Wilson');
+
+-- FIND THE SALARY IN HR DEPARTMENT WHOSE NAME STARTS WITH B
+SELECT salary
+FROM employees
+WHERE department = 'HR'
+  AND employee_name LIKE 'B%';
+
+-- FIND THE EMPLOYEE NAME WHO IS GETTING SALARY GREATER THAN SALARY OF HR DEPARTMENT
+SELECT employee_name
+FROM employees
+WHERE salary > (
+    SELECT MAX(salary)
+    FROM employees
+    WHERE department = 'HR'
+);
+
 
